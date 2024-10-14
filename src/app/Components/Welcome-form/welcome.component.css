@@ -1,0 +1,157 @@
+/* Ensure the navbar takes the full width and is fixed at the top */
+.navbar {
+  width: 100%; /* Full width */
+  background-color: #eff1f4; /* Light background color for navbar */
+  position: fixed; /* Fixed at the top */
+  top: 0;
+  left: 0;
+  z-index: 1000; /* Keep above other content */
+}
+
+/* Ensure the main content doesn't overlap with the navbar */
+.main-content {
+  margin-top: 70px; /* Push content below navbar */
+  padding: 20px; /* Add padding for readability */
+}
+
+/* Light-colored text for navbar links */
+.navbar-brand,
+.navbar-nav .nav-link {
+  color: #000000 !important; /* Black text color for contrast */
+  font-weight: 500;
+  font-size: 18px;
+  transition: color 0.3s, background-color 0.3s; /* Smooth transition for color and background change */
+  padding: 8px 15px; /* Reduced padding for a slightly smaller height */
+  border-radius: 5px; /* Slightly rounded corners */
+}
+
+/* Hover effect for navbar links */
+.navbar-nav .nav-link:hover {
+  color: #ffffff; /* Change text color on hover */
+  background-color: #4c5c6d; /* Background color on hover */
+  text-decoration: none; /* Remove underline on hover */
+}
+
+/* Left-align the logo */
+.logo-container {
+  display: flex; /* Use flexbox for layout */
+  align-items: center; /* Center vertically */
+}
+
+/* Adjust the navbar to accommodate logo */
+.navbar-nav {
+  margin-left: auto; /* Push items to the right */
+}
+
+/* Permanent button styling */
+.btn {
+  display: flex;
+  flex-direction: column; /* Stack icon and text vertically */
+  align-items: center; /* Center items horizontally */
+  justify-content: center; /* Center items vertically */
+  height: 100px; /* Fixed height for buttons */
+  background-color: #ec1313; /* Permanent background color for buttons */
+  color: #ffffff; /* White text color for buttons */
+  border: none; /* Remove border */
+  border-radius: 5px; /* Rounded corners */
+  transition: background-color 0.3s, color 0.3s; /* Smooth transition for hover */
+}
+
+/* Permanent button hover effect */
+.btn:hover {
+  background-color: #ff7700; /* Darker blue on hover */
+  color: #ffffff; /* Keep text color white on hover */
+}
+
+/* Mobile responsive tweaks */
+@media (max-width: 768px) {
+  .navbar-nav {
+    text-align: center; /* Center navbar links on small screens */
+    width: 100%; /* Full width on mobile */
+  }
+
+  .navbar-brand,
+  .navbar-nav .nav-link {
+    font-size: 16px; /* Smaller text on mobile */
+  }
+}
+
+/* Tablet responsiveness */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .navbar {
+    width: 100%; /* Full width for tablets */
+  }
+
+  .navbar-brand,
+  .navbar-nav .nav-link {
+    font-size: 17px; /* Adjust font size for tablets */
+  }
+}
+
+/* Logo styling */
+.logo {
+  width: 190px; /* Set logo size */
+  height: auto; /* Maintain aspect ratio */
+  max-width: 100%; /* Ensure it doesn't exceed container width */
+}
+
+/* Responsive adjustments for the logo */
+@media (max-width: 768px) {
+  .logo {
+    width: 120px; /* Smaller size for mobile */
+  }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+  .logo {
+    width: 140px; /* Slightly smaller size for tablets */
+  }
+}
+
+
+
+
+
+
+
+
+
+
+/* Ensure the navbar takes the full width and is fixed at the top */
+.navbar {
+  width: 100%;
+  background-color: #eff1f4;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+}
+
+/* Ensure the main content doesn't overlap with the navbar */
+.main-content {
+  margin-top: 70px;
+  padding: 20px;
+}
+
+/* Pagination controls styling */
+.pagination-controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.pagination-controls button {
+  margin: 0 10px;
+}
+
+/* Table responsiveness */
+.table-responsive {
+  margin-top: 20px;
+}
+
+@media (max-width: 768px) {
+  .pagination-controls {
+    flex-direction: column;
+  }
+}

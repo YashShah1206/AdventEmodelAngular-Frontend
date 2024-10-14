@@ -1,0 +1,39 @@
+<!-- src/app/Components/Welcome-form/welcome.component.html -->
+<!-- Navbar -->
+
+<app-navbar></app-navbar>
+<!-- Main content area -->
+<div class="main-content text-center my-5">
+  <h1>Welcome to the App</h1>
+
+  <!-- Button container -->
+  <div class="row">
+    <div class="col-6 mb-3">
+      <button (click)="navigateToDrivers()" class="btn btn-secondary w-100"><i class="fas fa-users"></i><span> Manage Drivers</span></button>
+    </div>
+    <div class="col-6 mb-3">
+      <button (click)="navigateToTerminals()" class="btn btn-info w-100"><i class="fas fa-map-marker-alt"></i><span> Manage Terminals</span></button>
+    </div>
+    <div class="col-6 mb-3">
+      <button (click)="navigateToTruckingCompanies()" class="btn btn-warning w-100"><i class="fas fa-truck"></i><span> Manage Trucking Companies</span></button>
+    </div>
+    <div class="col-6 mb-3">
+      <button (click)="navigateToContainers()" class="btn btn-success w-100"><i class="fas fa-box"></i><span> Manage Containers</span></button>
+    </div>
+    <div class="col-6 mb-3">
+      <button (click)="navigateToShip()" class="btn btn-success w-100"><i class="fas fa-ship"></i><span> Manage Ship</span></button>
+    </div>
+    <div class="col-12 mb-3">
+      <button (click)="navigateToAppointments()" class="btn btn-primary w-50 btn-lg"><i class="fas fa-calendar-check"></i><span> Manage Appointments</span></button>
+    </div>
+    <div class="col-12 mb-3">
+      <button (click)="navigateToBooking()" class="btn btn-primary w-50 btn-lg"><i class="fas fa-calendar-plus"></i><span> Book Appointment</span></button>
+    </div>
+  </div>
+
+</div>
+
+<app-appointment-list></app-appointment-list>
+
+<!-- Font Awesome CDN for icons -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
