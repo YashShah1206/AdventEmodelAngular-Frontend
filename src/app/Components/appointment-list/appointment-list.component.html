@@ -56,8 +56,42 @@
         <button type="button" class="btn-close" (click)="closeModal()"></button>
       </div>
       <div class="modal-body">
-        <label for="appointmentDate">Appointment Date:</label>
-        <input type="datetime-local" id="appointmentDate" [(ngModel)]="selectedAppointment.appointmentDate" class="form-control" required>
+        <div>
+          <label for="userId">User ID:</label>
+          <input type="text" id="userId" [value]="selectedAppointment.userId" class="form-control" readonly>
+        </div>
+        <div>
+          <label for="appointmentDate">Appointment Date:</label>
+          <input type="datetime-local" id="appointmentDate" [(ngModel)]="selectedAppointment.appointmentDate" class="form-control" required>
+        </div>
+        <div>
+          <label for="port">Port:</label>
+          <input type="text" id="port" [value]="selectedAppointment.port" class="form-control" readonly>
+        </div>
+        <div>
+          <label for="truckingCompany">Trucking Company:</label>
+          <input type="text" id="truckingCompany" [value]="selectedAppointment.truckingCompany?.name" class="form-control" readonly>
+        </div>
+        <div>
+          <label for="vehicleNumber">Vehicle Number:</label>
+          <input type="text" id="vehicleNumber" [value]="selectedAppointment.driver?.vehicleNumber" class="form-control" readonly>
+        </div>
+        <div>
+          <label for="containerNumber">Container Number:</label>
+          <input type="text" id="containerNumber" [value]="selectedAppointment.container?.containerNumber" class="form-control" readonly>
+        </div>
+        <div>
+          <label for="terminalName">Terminal Name:</label>
+          <input type="text" id="terminalName" [value]="selectedAppointment.terminalName" class="form-control" readonly>
+        </div>
+        <div>
+          <label for="shipNumber">Ship Number:</label>
+          <input type="text" id="shipNumber" [value]="selectedAppointment.ship?.shipNumber" class="form-control" readonly>
+        </div>
+        <div>
+          <label for="ticketNumber">Ticket Number:</label>
+          <input type="text" id="ticketNumber" [value]="selectedAppointment.ticketNumber" class="form-control" readonly>
+        </div>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" (click)="closeModal()">Cancel</button>
