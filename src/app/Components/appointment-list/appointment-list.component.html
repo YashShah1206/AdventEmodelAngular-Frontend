@@ -29,12 +29,14 @@
         <td>{{ appointment.container?.containerNumber }}</td>
         <td>{{ appointment.terminalName }}</td>
         <td>{{ appointment.ship?.shipNumber }}</td>
-        <td>{{ appointment.status === false ? 'Approved' : 'Not Approved' }}</td>
+        <td>{{ appointment.appointmentStatus }}</td>
         <td>{{ appointment.isDeleted === false ? 'Confirmed' : 'Cancelled' }}</td>
         <td>{{ appointment.ticketNumber }}</td>
         <td>
           <button (click)="openUpdateModal(appointment)" class="btn btn-primary">Update</button>
           <button (click)="softDeleteAppointment(appointment.id)" class="btn btn-danger">Delete</button>
+          <button (click)="approveAppointment(appointment)" class="btn btn-success">Approve</button>
+          <button (click)="rejectAppointment(appointment)" class="btn btn-warning">Disapprove</button>
         </td>
       </tr>
     </tbody>

@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';  // Import FormsModule
+import { FormsModule } from '@angular/forms';
 import { AppointmentService } from '../../Services/appointment.service';
 
 @Component({
   selector: 'app-appointment-list',
   templateUrl: './appointment-list.component.html',
   standalone: true,
-  imports: [CommonModule, FormsModule],  // Add FormsModule here
+  imports: [CommonModule, FormsModule],
   styleUrls: ['./appointment-list.component.css'],
 })
 export class AppointmentListComponent implements OnInit {
@@ -15,8 +15,8 @@ export class AppointmentListComponent implements OnInit {
   paginatedAppointments: any[] = [];
   isLoading = true;
   errorMessage: string | null = null;
-  selectedAppointment: any = {}; // Initialize selectedAppointment for updating
-  isModalOpen: boolean = false; // Initialize modal visibility
+  selectedAppointment: any = {}; 
+  isModalOpen: boolean = false; 
 
   // Pagination variables
   currentPage: number = 1;
@@ -28,13 +28,13 @@ export class AppointmentListComponent implements OnInit {
     this.fetchAppointments();
   }
 
-  // Fetch appointments from the service
   private fetchAppointments(): void {
     this.appointmentService.getAllAppointments().subscribe(
       (data) => {
         this.appointments = data.map((appointment: any) => ({
           ...appointment,
           terminalName: appointment.terminal ? appointment.terminal.terminalName : 'N/A',
+          
         }));
         this.paginateAppointments();
         this.isLoading = false;
@@ -47,57 +47,74 @@ export class AppointmentListComponent implements OnInit {
     );
   }
 
-  // Pagination logic
+  // Approve appointment
+  approveAppointment(appointment: any): void {
+    this.appointmentService.approveAppointment(appointment.id).subscribe(
+      () => {
+        alert('Appointment approved successfully');
+        this.fetchAppointments(); 
+      },
+      (error) => {
+        console.error('Error approving appointment:', error);
+        alert('Failed to approve appointment');
+      }
+    );
+  }
+
+  // Reject appointment
+  rejectAppointment(appointment: any): void {
+    this.appointmentService.rejectAppointment(appointment.id).subscribe(
+      () => {
+        alert('Appointment rejected successfully');
+        this.fetchAppointments(); 
+      },
+      (error) => {
+        console.error('Error rejecting appointment:', error);
+        alert('Failed to reject appointment');
+      }
+    );
+  }
+
   private paginateAppointments(): void {
     const startIndex = (this.currentPage - 1) * this.itemsPerPage;
     const endIndex = startIndex + this.itemsPerPage;
     this.paginatedAppointments = this.appointments.slice(startIndex, endIndex);
   }
 
-  // Handle page changes
   changePage(page: number): void {
     this.currentPage = page;
     this.paginateAppointments();
   }
 
-  // Open update modal with selected appointment
   openUpdateModal(appointment: any): void {
-    this.selectedAppointment = { ...appointment }; // Set the selected appointment for updating
-    this.isModalOpen = true; // Open the modal
+    this.selectedAppointment = { ...appointment }; 
+    this.isModalOpen = true; 
   }
 
-  // Close the modal
   closeModal(): void {
-    this.isModalOpen = false; // Close the modal
-    this.selectedAppointment = {}; // Reset selected appointment
+    this.isModalOpen = false;
   }
 
-  // Confirm the update of the appointment
   updateAppointment(): void {
-    // Ensure that the selected appointment has an ID for updating
-    if (this.selectedAppointment && this.selectedAppointment.id) {
-      this.appointmentService.updateAppointment(this.selectedAppointment).subscribe(
-        () => {
-          alert('Appointment updated successfully');
-          this.fetchAppointments(); // Refresh appointments
-          this.closeModal(); // Close modal after update
-        },
-        (error) => {
-          console.error('Error updating appointment:', error);
-          alert('Failed to update appointment');
-        }
-      );
-    } else {
-      alert('No appointment selected for update');
-    }
+    this.appointmentService.updateAppointment(this.selectedAppointment).subscribe(
+      () => {
+        alert('Appointment updated successfully');
+        this.fetchAppointments(); 
+        this.closeModal(); 
+      },
+      (error) => {
+        console.error('Error updating appointment:', error);
+        alert('Failed to update appointment');
+      }
+    );
   }
 
   // Soft delete appointment
-  deleteAppointment(appointmentId: number): void {
-    this.appointmentService.deleteAppointment(appointmentId).subscribe(
+  softDeleteAppointment(appointmentId: number): void {
+    this.appointmentService.softDeleteAppointment(appointmentId).subscribe(
       () => {
         alert('Appointment deleted successfully');
-        this.fetchAppointments(); // Refresh appointments
+        this.fetchAppointments(); 
       },
       (error) => {
         console.error('Error deleting appointment:', error);
@@ -105,12 +122,4 @@ export class AppointmentListComponent implements OnInit {
       }
     );
   }
-
-  // Soft delete appointment - if necessary, otherwise just use deleteAppointment
-  softDeleteAppointment(appointmentId: number): void {
-    // If you want a specific soft delete implementation, define it here.
-    this.deleteAppointment(appointmentId); // Use existing delete method
-  }
-
-  
 }
