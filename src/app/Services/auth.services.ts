@@ -84,7 +84,7 @@ export class AuthService {
   }
 
   // Method to decode the JWT and extract userId
-  private getUserIdFromToken(token: string): string {
+ getUserIdFromToken(token: string): string {
     const payload = this.decodeToken(token);
     return payload?.UserId || ''; // Adjust based on your token payload structure
   }
