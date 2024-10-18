@@ -33,10 +33,11 @@
         <td>{{ appointment.isDeleted === false ? 'Confirmed' : 'Cancelled' }}</td>
         <td>{{ appointment.ticketNumber }}</td>
         <td>
-          <button (click)="openUpdateModal(appointment)" class="btn btn-primary">Update</button>
-          <button (click)="softDeleteAppointment(appointment.id)" class="btn btn-danger">Delete</button>
-          <button (click)="approveAppointment(appointment)" class="btn btn-success">Approve</button>
-          <button (click)="rejectAppointment(appointment)" class="btn btn-warning">Disapprove</button>
+          <!-- These buttons will only be shown if the user is an admin -->
+          <button *ngIf="role === 'Admin'" (click)="openUpdateModal(appointment)" class="btn btn-primary">Update</button>
+          <button *ngIf="role === 'Admin'" (click)="softDeleteAppointment(appointment.id)" class="btn btn-danger">Delete</button>
+          <button *ngIf="role === 'Admin'" (click)="approveAppointment(appointment)" class="btn btn-success">Approve</button>
+          <button *ngIf="role === 'Admin'" (click)="rejectAppointment(appointment)" class="btn btn-warning">Disapprove</button>
         </td>
       </tr>
     </tbody>
