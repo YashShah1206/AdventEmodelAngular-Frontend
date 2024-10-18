@@ -17,7 +17,8 @@ export class AppointmentListComponent implements OnInit {
   isLoading = true;
   errorMessage: string | null = null;
   selectedAppointment: any = {}; 
-  isModalOpen: boolean = false; 
+  isModalOpen: boolean = false;
+  role: string | null = null; // Add role property
 
   // Pagination variables
   currentPage: number = 1;
@@ -32,11 +33,11 @@ export class AppointmentListComponent implements OnInit {
   private fetchAppointments(): void {
     this.appointmentService.getAllAppointments().subscribe(
       (data) => {
-        const role = this.authService.getRole(); // Get the role of the logged-in user
+        this.role = this.authService.getRole(); // Store the role of the logged-in user
         const token = this.authService.getToken(); // Get the JWT token from local storage
         const userId = token ? this.authService.getUserIdFromToken(token) : null; // Handle null token
 
-        if (role === 'Admin') {
+        if (this.role === 'Admin') {
           // If admin, show all appointments
           this.appointments = data.map((appointment: any) => ({
             ...appointment,
@@ -46,13 +47,12 @@ export class AppointmentListComponent implements OnInit {
           // If user, filter appointments by userId
           if (userId) {
             this.appointments = data
-              .filter((appointment: any) => appointment.userId == userId) // Strict equality check (to handle types properly)
+              .filter((appointment: any) => appointment.userId == userId)
               .map((appointment: any) => ({
                 ...appointment,
                 terminalName: appointment.terminal ? appointment.terminal.terminalName : 'N/A',
               }));
 
-            // Check if no appointments are found for the user
             if (this.appointments.length === 0) {
               this.errorMessage = 'No appointments found for this user.';
             }
@@ -77,7 +77,7 @@ export class AppointmentListComponent implements OnInit {
     this.appointmentService.approveAppointment(appointment.id).subscribe(
       () => {
         alert('Appointment approved successfully');
-        this.fetchAppointments(); 
+        this.fetchAppointments();
       },
       (error) => {
         console.error('Error approving appointment:', error);
@@ -91,7 +91,7 @@ export class AppointmentListComponent implements OnInit {
     this.appointmentService.rejectAppointment(appointment.id).subscribe(
       () => {
         alert('Appointment rejected successfully');
-        this.fetchAppointments(); 
+        this.fetchAppointments();
       },
       (error) => {
         console.error('Error rejecting appointment:', error);
@@ -112,8 +112,8 @@ export class AppointmentListComponent implements OnInit {
   }
 
   openUpdateModal(appointment: any): void {
-    this.selectedAppointment = { ...appointment }; 
-    this.isModalOpen = true; 
+    this.selectedAppointment = { ...appointment };
+    this.isModalOpen = true;
   }
 
   closeModal(): void {
@@ -124,8 +124,8 @@ export class AppointmentListComponent implements OnInit {
     this.appointmentService.updateAppointment(this.selectedAppointment).subscribe(
       () => {
         alert('Appointment updated successfully');
-        this.fetchAppointments(); 
-        this.closeModal(); 
+        this.fetchAppointments();
+        this.closeModal();
       },
       (error) => {
         console.error('Error updating appointment:', error);
@@ -134,12 +134,11 @@ export class AppointmentListComponent implements OnInit {
     );
   }
 
-  // Soft delete appointment
   softDeleteAppointment(appointmentId: number): void {
     this.appointmentService.softDeleteAppointment(appointmentId).subscribe(
       () => {
         alert('Appointment deleted successfully');
-        this.fetchAppointments(); 
+        this.fetchAppointments();
       },
       (error) => {
         console.error('Error deleting appointment:', error);
