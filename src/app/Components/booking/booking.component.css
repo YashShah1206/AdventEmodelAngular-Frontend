@@ -2,7 +2,6 @@
 
 body {
     font-family: Arial, sans-serif;
-    background: url('../../../assets/Truck.jpg') no-repeat center center fixed; /* Add your background image */
     background-size: cover;
     color: #fff; /* Default text color for better visibility */
 }
