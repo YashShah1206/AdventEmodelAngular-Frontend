@@ -2,14 +2,6 @@
 <div class="terminal-management">
   <h2>Terminal Management</h2>
 
-  <!-- Search Input for Terminals -->
-  
-
-  <div class="cont">
-    <button (click)="goBack()" class="back-button">Back</button>
-    <button (click)="openModal('create')" class="create-button">Create</button>
-  </div>
-
   <h3>Terminal List</h3>
   <div class="table-container">
     <table class="terminal-table">
@@ -38,6 +30,12 @@
     </table>
   </div>
 
+  <!-- Back and Create Buttons (now below the table, aligned left) -->
+  <div class="button-container">
+    <button (click)="goBack()" class="back-button">Back</button>
+    <button (click)="openModal('create')" class="create-button">Create Terminal</button>
+  </div>
+
   <!-- Modal for Create/Update Terminal -->
   <div *ngIf="isModalOpen" class="modal-overlay">
     <div class="modal-content">
@@ -52,7 +50,7 @@
             name="terminalName" 
             placeholder="Enter terminal name"
             required
-            pattern="[a-zA-Z\s]*" 
+            pattern="[a-zA-Z\s]*"
           />
           <div *ngIf="terminalForm.controls['terminalName']?.invalid && terminalForm.controls['terminalName']?.touched">
             <div *ngIf="terminalForm.controls['terminalName']?.errors?.['required']" class="error-message">
@@ -96,10 +94,12 @@
           </div>
         </div>
 
-        <button type="submit" [disabled]="terminalForm.invalid" class="submit-button">
-          {{ isEditing ? 'Update' : 'Create' }} Terminal
-        </button>
-        <button type="button" (click)="closeModal()" class="close-button">Close</button>
+        <div class="modal-actions">
+          <button type="submit" [disabled]="terminalForm.invalid" class="submit-button">
+            {{ isEditing ? 'Update' : 'Create' }} Terminal
+          </button>
+          <button type="button" (click)="closeModal()" class="close-button">Close</button>
+        </div>
       </form>
     </div>
   </div>

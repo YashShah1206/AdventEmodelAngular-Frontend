@@ -2,11 +2,6 @@
 <div class="driver-management">
   <h2>Driver Management</h2>
 
-  <div class="cont">
-    <button (click)="goBack()" class="back-button">Back</button>
-    <button (click)="openModal('create')" class="create-button">Create</button>
-  </div>
-
   <div class="search-container">
     <input type="text" [(ngModel)]="searchTerm" (input)="filterDrivers()" placeholder="Search drivers..." class="search-input" />
   </div>
@@ -43,6 +38,12 @@
         </tr>
       </tbody>
     </table>
+  </div>
+
+  <!-- Button container positioned to the left side below the driver list -->
+  <div class="button-container" style="display: flex; justify-content: flex-start; margin-top: 10px;">
+    <button (click)="goBack()" class="back-button">Back</button>
+    <button (click)="openModal('create')" class="create-button">Create</button>
   </div>
 
   <div *ngIf="isModalOpen" class="modal-overlay">

@@ -53,7 +53,7 @@
       <div *ngIf="appointmentForm.get('port')?.invalid && appointmentForm.get('port')?.touched">
         <small class="error">Port is required.</small>
       </div>
-
+      <button type="button" (click)="goBack()">Back</button>
       <button type="button" (click)="nextStep()">Next</button>
     </div>
 

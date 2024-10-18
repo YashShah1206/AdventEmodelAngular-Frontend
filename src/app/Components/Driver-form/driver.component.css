@@ -3,40 +3,56 @@ body {
     margin: 0;
     font-family: Arial, sans-serif;
     background-color: #f9f9f9;
-    width: 100vw;
-    height: 100vh;
+    overflow-x: hidden;
+    min-height: 100vh; /* Ensure content stretches to fill the screen */
+}
+
+/* Ensure space between navbar and page content */
+.page-content {
+    margin-top: 80px; /* Adjust this based on actual navbar height */
+    padding-left: 20px;
+    padding-right: 20px;
 }
 
 /* Driver Management Styles */
 .driver-management {
-    width: 100vw;
-    height: 100vh;
+    width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
     padding: 10px;
     margin: 0 auto;
-    background-color: #f9f9f9; /* Ensure a solid background color */
+    background-color: #f9f9f9;
+    box-sizing: border-box;
+    overflow: visible; /* Ensure contents are visible */
+    margin-top: 20px;
 }
 
 h2, h3 {
     text-align: center;
-    margin-bottom: 20px;
+    margin: 20px 0; /* Add space above and below headings */
+    font-size: 24px; /* Ensure the heading is large enough */
+    font-weight: bold;
+    color: #333;
+    z-index: 1;
 }
 
+h2 {
+    margin-top: 20px; /* Ensure space between the navbar and heading */
+    padding: 0 20px; /* Optional: Add padding to prevent clipping */
+}
+
+/* Table Styles */
 .table-container {
-    width: 100vw;
-    height: 100vh;
+    width: 100%;
     max-width: 100%;
     overflow-x: auto;
-    overflow-y: auto; /* Enable vertical scrolling */
 }
 
 .driver-table {
     width: 100%;
     border-collapse: collapse;
-    /* margin-top: 20px; */
 }
 
 .driver-table th, .driver-table td {
@@ -49,9 +65,9 @@ h2, h3 {
 .driver-table th {
     background-color: #f2f2f2;
     text-align: center;
-    position: sticky; /* Make header sticky */
-    top: 0;           /* Stick to the top */
-    z-index: 10;      /* Ensure it is above other content */
+    position: sticky;
+    top: 0;
+    z-index: 10;
 }
 
 /* Action Buttons and Dropdown */
@@ -141,105 +157,54 @@ h2, h3 {
     border-radius: 4px;
 }
 
-.submit-button {
-    background-color: #28a745;
-    color: white;
-    padding: 10px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-}
-
-.close-button {
-    background-color: #dc3545;
-    color: white;
-    padding: 10px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-}
-
-/* Back Button Styles */
-.back-button {
-    background-color: #6c757d;
-    color: white;
-    padding: 5px 10px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-     margin-bottom: 10px; 
-    margin-right: 100%;
-    /* margin-left: 0%; */
-    width: 100px;
-    height: 40px;
-    justify-content: flex-end;
-}
-
-/* Navbar Styles */
-.navbar {
-    background-color: #007bff;
-    padding: 10px;
-    color: white;
-    text-align: center;
-}
-
-.navbar a {
-    color: white;
-    text-decoration: none;
-    padding: 0 15px;
-}
-
-.navbar a:hover {
-    text-decoration: underline;
-}
-
-/* Create Button */
-.create-button {
-    float: right;
-    background-color: #28a745;
-    color: white;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    /* margin-bottom: 20px; */
-    width: fit-content;
-    margin-left: 50%;
-}
-
-/* Media Queries for Responsiveness */
-@media (max-width: 768px) {
-    .driver-table {
-        font-size: 14px;
-    }
-    
-    .submit-button, .close-button, .back-button {
-        padding: 8px;
-    }
-}
-
-@media (max-width: 480px) {
-    h2, h3 {
-        font-size: 18px;
-    }
-    
-    .create-button {
-        width: 100%;
-        margin: 10px 0;
-    }
-    
-    .modal-content {
-        width: 100%;
-    }
-    
-    .navbar a {
-        display: block;
-        padding: 10px;
-    }
-
-}
-.cont{
+.form-actions {
     display: flex;
-    align-items: end;
-    
+    justify-content: space-between;
+}
+
+/* Button Styles */
+.button-container {
+    display: flex;
+    justify-content: flex-start; /* Align buttons to the left */
+    margin-top: 10px; /* Add margin above buttons */
+}
+
+.back-button {
+    padding: 10px 15px;
+    margin-right: 10px;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    cursor: pointer;
+    background-color: #007bff; /* Style for back button */
+}
+
+.create-button {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    cursor: pointer;
+    background-color: #28a745; /* Style for create button */
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    .driver-management {
+        padding: 5px;
+    }
+
+    h2, h3 {
+        font-size: 20px; /* Adjust heading size on smaller screens */
+    }
+
+    .driver-table th, .driver-table td {
+        font-size: 14px; /* Adjust table font size on smaller screens */
+    }
+
+    .back-button, .create-button {
+        margin-right: 0; /* Reset right margin */
+        margin-bottom: 10px; /* Add space between buttons */
+        width: 100%; /* Full width buttons */
+    }
 }

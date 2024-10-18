@@ -168,6 +168,11 @@ export class AppointmentComponent implements OnInit {
     }
   }
 
+    goBack() {
+    // Navigate to the previous page or welcome page
+    this.router.navigate(['/welcome']);  // You can change '/welcome' to the appropriate route
+  }
+
   previousStep() {
     if (this.step > 1) {
       this.step--;

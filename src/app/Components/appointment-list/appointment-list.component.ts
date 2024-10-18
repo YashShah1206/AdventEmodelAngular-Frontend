@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { AppointmentService } from '../../Services/appointment.service';
-import { AuthService } from '../../Services/auth.services';
 
 @Component({
   selector: 'app-appointment-list',
@@ -23,7 +22,7 @@ export class AppointmentListComponent implements OnInit {
   currentPage: number = 1;
   itemsPerPage: number = 8;
 
-  constructor(private appointmentService: AppointmentService, private authService: AuthService) {}
+  constructor(private appointmentService: AppointmentService) {}
 
   ngOnInit(): void {
     this.fetchAppointments();
@@ -32,35 +31,11 @@ export class AppointmentListComponent implements OnInit {
   private fetchAppointments(): void {
     this.appointmentService.getAllAppointments().subscribe(
       (data) => {
-        const role = this.authService.getRole(); // Get the role of the logged-in user
-        const token = this.authService.getToken(); // Get the JWT token from local storage
-        const userId = token ? this.authService.getUserIdFromToken(token) : null; // Handle null token
-
-        if (role === 'Admin') {
-          // If admin, show all appointments
-          this.appointments = data.map((appointment: any) => ({
-            ...appointment,
-            terminalName: appointment.terminal ? appointment.terminal.terminalName : 'N/A',
-          }));
-        } else {
-          // If user, filter appointments by userId
-          if (userId) {
-            this.appointments = data
-              .filter((appointment: any) => appointment.userId == userId) // Strict equality check (to handle types properly)
-              .map((appointment: any) => ({
-                ...appointment,
-                terminalName: appointment.terminal ? appointment.terminal.terminalName : 'N/A',
-              }));
-
-            // Check if no appointments are found for the user
-            if (this.appointments.length === 0) {
-              this.errorMessage = 'No appointments found for this user.';
-            }
-          } else {
-            this.errorMessage = 'User ID could not be retrieved. Please log in again.';
-          }
-        }
-
+        this.appointments = data.map((appointment: any) => ({
+          ...appointment,
+          terminalName: appointment.terminal ? appointment.terminal.terminalName : 'N/A',
+          
+        }));
         this.paginateAppointments();
         this.isLoading = false;
       },

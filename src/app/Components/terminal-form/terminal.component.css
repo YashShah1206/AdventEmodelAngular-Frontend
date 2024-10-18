@@ -7,30 +7,36 @@ body {
     height: 100vh;
 }
 
-/* Terminal Management Styles */
+/* Navbar Styles (adjusting padding/margin for navbar) */
+app-navbar {
+    display: block;
+    width: 100%;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+/* Terminal Management Container */
 .terminal-management {
-    width: 100vw;
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 10px;
+    width: 100%;
+    padding: 20px; /* Adjusting padding for spacing between navbar and content */
     margin: 0 auto;
     background-color: #f9f9f9;
+    box-sizing: border-box; /* Ensures padding doesn't affect overall width */
 }
 
+/* Heading Styles (Adding margin to avoid overlap with navbar) */
 h2, h3 {
     text-align: center;
-    margin-bottom: 20px;
+    margin: 20px 0; /* Adding top margin to ensure it doesn't overlap with the navbar */
 }
 
+/* Table Container */
 .table-container {
-    width: 100vw;
-    height: 100vh;
     max-width: 100%;
     overflow-x: auto;
     overflow-y: auto;
+    padding: 0 10px;
 }
 
 .terminal-table {
@@ -92,35 +98,53 @@ h2, h3 {
     text-align: left;
 }
 
-/* Update button style */
 .actions-dropdown .update-button {
     background-color: #28a745;
     color: white;
-    padding: 8px 12px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    text-align: center;
 }
 
-/* Soft Delete button styled in red */
 .actions-dropdown .soft-delete-button {
-    background-color: #dc3545; /* Red color for delete button */
+    background-color: #dc3545;
     color: white;
-    padding: 8px 12px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    text-align: center;
 }
 
-/* Hover effect for both buttons */
 .actions-dropdown button:hover {
-    background-color: #218838; /* Darker shade on hover for update */
+    background-color: #218838;
 }
 
 .actions-dropdown .soft-delete-button:hover {
-    background-color: #c82333; /* Darker shade on hover for delete */
+    background-color: #c82333;
+}
+
+/* Button Container Styles (now below the table) */
+.button-container {
+    display: flex;
+    justify-content: flex-start;
+    gap: 10px;
+    padding: 10px;
+    margin-top: 20px;
+}
+
+.back-button {
+    background-color: #6c757d;
+    color: white;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 100px;
+    height: 40px;
+}
+
+.create-button {
+    background-color: #007bff;
+    color: white;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 160px;
+    height: 40px;
 }
 
 /* Modal Styles */
@@ -161,6 +185,12 @@ h2, h3 {
     border-radius: 4px;
 }
 
+.modal-actions {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+}
+
 .submit-button {
     background-color: #28a745;
     color: white;
@@ -179,73 +209,22 @@ h2, h3 {
     cursor: pointer;
 }
 
-/* Back Button Styles */
-.back-button {
-    background-color: #6c757d;
-    color: white;
-    padding: 5px 10px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    margin-bottom: 10px; 
-    margin-right: 100%;
-    width: 100px;
-    height: 40px;
+/* Error Message Styles */
+.error-message {
+    color: #dc3545;
+    font-size: 12px;
 }
 
-/* Navbar Styles */
-.navbar {
-    background-color: #007bff;
-    padding: 10px;
-    color: white;
-    text-align: center;
-}
-
-.navbar a {
-    color: white;
-    text-decoration: none;
-    padding: 0 15px;
-}
-
-.navbar a:hover {
-    text-decoration: underline;
-}
-
-/* Create Button */
-.create-button {
-    float: right;
-    background-color: #28a745;
-    color: white;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    width: fit-content;
-    margin-left: 50%;
-}
-
-/* Media Queries for Responsiveness */
+/* Responsive Styles */
 @media (max-width: 768px) {
-    .terminal-table {
-        font-size: 14px;
-    }
-    
-    .submit-button, .close-button, .back-button {
-        padding: 8px;
+    .modal-content {
+        width: 95%;
     }
 }
 
-@media (max-width: 480px) {
-    h2, h3 {
-        font-size: 18px;
-    }
-    
-    .create-button {
-        width: 100%;
-        margin: 10px 0;
-    }
-    
-    .modal-content {
-        width: 90%;
+@media (max-width: 576px) {
+    .button-container {
+        flex-direction: column;
+        gap: 10px;
     }
 }

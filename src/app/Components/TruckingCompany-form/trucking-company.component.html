@@ -3,16 +3,6 @@
 <div class="trucking-company-management">
   <h2>Trucking Company Management</h2>
 
-  <!-- Back button to return to the previous page -->
-  <div class="cont">
-    <button (click)="goBack()" class="back-button">Back</button>
-
-    <!-- Button to open the modal for creating a new trucking company -->
-    <button (click)="openModal('create')" class="create-button">
-      Create Trucking Company
-    </button>
-  </div>
-
   <!-- List of trucking companies in a table -->
   <h3>Trucking Company List</h3>
   <div class="table-container">
@@ -43,6 +33,12 @@
         </tr>
       </tbody>
     </table>
+  </div>
+
+  <!-- Button Container -->
+  <div class="button-container">
+    <button (click)="goBack()" class="back-button">Back</button>
+    <button (click)="openModal('create')" class="create-button">Create Trucking Company</button>
   </div>
 
   <!-- Modal for Create/Update Trucking Company -->

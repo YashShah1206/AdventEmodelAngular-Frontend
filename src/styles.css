@@ -19,6 +19,7 @@ form {
   width: 100%;
   max-width: 400px; /* Maximum width of forms */
   margin: 20px; /* Margin between forms */
+  /* margin-left: 600px; */
 }
 
 h2 {
@@ -121,3 +122,11 @@ a:hover {
     width: 90%; /* Adjust form width on small screens */
   }
 }
+
+
+
+
+
+
+
+

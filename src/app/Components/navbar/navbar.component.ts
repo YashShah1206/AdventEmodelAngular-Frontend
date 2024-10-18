@@ -56,7 +56,7 @@ export class NavbarComponent {
   }  
 
   navigateToShip() {  
-    this.router.navigate(['/ship']);  
+    this.router.navigate(['/ships']);  
   }  
 
   navigateToAppointments() {  

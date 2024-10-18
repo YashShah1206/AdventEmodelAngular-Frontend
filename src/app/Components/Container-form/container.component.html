@@ -1,17 +1,7 @@
 <app-navbar></app-navbar>
 <!-- Container management section -->
-<div class="container-management">
+<div class="container-management page-content">
     <h2>Container Management</h2>
-    
-    <!-- Button to go back -->
-    <div class="cont">
-        <button (click)="goBack()" class="back-button">Back</button>
-        
-        <!-- Button to open the modal for creating a new container -->
-        <button (click)="openModal('create')" class="toggle-button">
-            Create Container
-        </button>
-    </div>
 
     <!-- List of containers in a table -->
     <h3>Container List</h3>
@@ -47,6 +37,14 @@
                 </tr>
             </tbody>
         </table>
+    </div>
+
+    <!-- Button to go back and button to open the modal for creating a new container -->
+    <div class="button-container">
+        <button (click)="goBack()" class="back-button">Back</button>
+        <button (click)="openModal('create')" class="create-button">
+            Create Container
+        </button>
     </div>
 
     <!-- Modal for Create/Update Container -->
@@ -103,26 +101,12 @@
                     </div>
                 </div>
 
-                <div class="form-group">
-                    <label for="status">Status:</label>
-                    <select 
-                        id="status" 
-                        [(ngModel)]="newContainer.status" 
-                        name="status" 
-                        required 
-                        class="form-control">
-                        <option [ngValue]="false">Available</option>
-                        <option [ngValue]="true">Not Available</option>
-                    </select>
-                    <div *ngIf="containerForm.controls['status']?.invalid && containerForm.controls['status']?.touched" class="error-message">
-                        Status is required.
-                    </div>
+                <div class="form-actions">
+                    <button type="button" (click)="closeModal()" class="cancel-button">Cancel</button>
+                    <button type="submit" [disabled]="containerForm.invalid" class="submit-button">
+                        {{ isEditing ? 'Update' : 'Create' }}
+                    </button>
                 </div>
-
-                <button type="submit" [disabled]="containerForm.invalid" class="submit-button">
-                    {{ isEditing ? 'Update' : 'Create' }} Container
-                </button>
-                <button type="button" (click)="closeModal()" class="close-button">Close</button>
             </form>
         </div>
     </div>
