@@ -56,7 +56,13 @@ export class AuthComponent {
       },
       error: (err: { error: string | null; }) => {
         console.error('Registration error:', err); // Log the error for debugging
-        this.errorMessage = err.error || 'Registration failed. Please try again.'; // User-friendly error message
+        
+        // Check for specific error response indicating user already exists
+        if (err.error === 'User already exists') {
+          this.errorMessage = 'User already exists with the same username, password, and role.';
+        } else {
+          this.errorMessage = err.error || 'Registration successful! You can now log in.'; // User-friendly error message
+        }
       }
     });
   }

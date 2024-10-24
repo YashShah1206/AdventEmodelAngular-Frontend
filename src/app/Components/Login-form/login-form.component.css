@@ -1,9 +1,11 @@
 /* Container for centering the login form */
 .login-container {
   display: flex;
+  
   justify-content: center;
   align-items: center;
   min-height: 100vh;
+  
 }
 
 form {
@@ -13,6 +15,7 @@ form {
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
   width: 100%;
   max-width: 400px;
+ 
 }
 
 input, select, button {
@@ -35,4 +38,25 @@ p a {
 
 p a:hover {
   color: darkorange;
+}
+
+.logo{
+  background-color: rgba(255, 255, 255, 0.9); /* Semi-transparent background */
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0px 10px 25px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 400px; /* Maximum width of forms */
+  margin: 20px; /* Margin between forms */
+  margin-left: 550px;
+}
+.custom-login-form {
+  background-color: rgba(255, 255, 255, 0.9); /* Semi-transparent background */
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0px 10px 25px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 400px; /* Maximum width of the form */
+  margin: 20px;
+  margin-right: 450px; /* Aligns form to the right */
 }

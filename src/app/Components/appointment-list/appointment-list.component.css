@@ -58,7 +58,7 @@ body {
 }
 
 .pagination-controls button:hover:not(:disabled) {
-    background-color: #0056b3; /* Darker blue on hover */
+    background-color: #ff0000; /* Darker blue on hover */
 }
 
 /* Modal Styles */

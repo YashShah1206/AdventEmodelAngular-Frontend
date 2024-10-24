@@ -1,3 +1,4 @@
+// src/app/Components/Welcome-form/welcome.component.ts
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
@@ -16,10 +17,15 @@ export class WelcomeComponent implements OnInit {
   username: string | null = null;
   role: string | null = null;
 
-  constructor(
-    private router: Router,
-    private authService: AuthService
-  ) {
+  // Statistics data
+  stats = [
+    { target: 85, value: 0, label: 'Global Port Authorities' },
+    { target: 200, value: 0, label: 'Inland Depots' },
+    { target: 310000, value: 0, label: 'Active Monthly Users' },
+    { target: 250, value: 0, label: 'Million Monthly Cargo Transactions Processed' }
+  ];
+
+  constructor(private router: Router, private authService: AuthService) {
     if (this.isLoggedIn()) {
       this.username = this.authService.getUsername();
       this.role = this.authService.getRole();
@@ -27,7 +33,7 @@ export class WelcomeComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    // Initialization logic if needed
+    this.animateStats(); // Start animating stats on initialization
   }
 
   isLoggedIn(): boolean {
@@ -66,5 +72,25 @@ export class WelcomeComponent implements OnInit {
 
   navigateToShip() {
     this.router.navigate(['/ships']);
+  }
+
+  // Method to animate statistics
+  animateStats() {
+    const duration = 2000; // 7 seconds
+    const interval = duration / this.stats.length; // Time per stat
+
+    this.stats.forEach(stat => {
+      const increment = Math.ceil(stat.target / (duration / 20)); // Increment value
+      const updateValue = () => {
+        if (stat.value < stat.target) {
+          stat.value += increment;
+          if (stat.value > stat.target) {
+            stat.value = stat.target; // Ensure it doesn't exceed the target
+          }
+          setTimeout(updateValue, 20); // Adjust speed of incrementing
+        }
+      };
+      updateValue();
+    });
   }
 }
